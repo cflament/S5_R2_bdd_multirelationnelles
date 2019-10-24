@@ -62,3 +62,4 @@ Gossip.all.each do |g|
         )
     end
 end 
+
