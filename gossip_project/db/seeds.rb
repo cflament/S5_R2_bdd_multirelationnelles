@@ -52,14 +52,27 @@
 # end 
 
 #ajout tags - gossips
-Gossip.all.each do |g|
-    nb = rand(1..Tag.all.length)
-    tag_array = nb.times.map{Tag.all.sample}.uniq
-    tag_array.each do |t|
-        GossipTag.create(
-            gossip: g,
-            tag: t
-        )
-    end
+# Gossip.all.each do |g|
+#     nb = rand(1..Tag.all.length)
+#     tag_array = nb.times.map{Tag.all.sample}.uniq
+#     tag_array.each do |t|
+#         GossipTag.create(
+#             gossip: g,
+#             tag: t
+#         )
+#     end
+# end 
+
+#ini PM ===> not working
+PrivateMessage.destroy_all
+10.times do 
+    nb_recipients = rand(1..3)
+    s = User.all.sample
+    r = nb_recipients.times.map{User.all.delete(s).sample}.uniq
+    PrivateMessage.create(
+        content: Faker::Lorem.sentence(word_count: 12),
+        sender: s,
+        recipient: r
+    )
 end 
 
